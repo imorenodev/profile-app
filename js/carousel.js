@@ -1,4 +1,15 @@
-$(document).ready(function(){
+var Carousel = (function() {
+
+	var $content = $("[rel=js-carousel] > [rel=js-content]");
+	var $items = $content.children("[rel=js-items]");
+	var $left = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-left]");
+	var $right = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-right]");
+
+
+	var contentWidth = $content.width();
+	var itemsWidth = $items.width();
+	var position = 0;
+	var maxPosition = (itemsWidth - contentWidth);
 
 	function scrollLeft(evt) {
 		evt.preventDefault();
@@ -24,19 +35,15 @@ $(document).ready(function(){
 		$items.css({ left: (-position) + "px" });
 	}
 
-	var $content = $("[rel=js-carousel] > [rel=js-content]");
-	var $items = $content.children("[rel=js-items]");
-	var $left = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-left]");
-	var $right = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-right]");
+    function init() {
+      $left.on("click", scrollLeft);
+	  $right.on("click", scrollRight);
+    }
+    
+    return {
+    	init: init
+    };
 
+})();
 
-	var contentWidth = $content.width();
-	var itemsWidth = $items.width();
-	var position = 0;
-	var maxPosition = (itemsWidth - contentWidth);
-
-	// attach click handlers for the `$left` and `$right` buttons,
-	// that call the `scrollLeft(..)` and `scrollRight(..)` functions,
-	// respectively
-
-});
+$(document).ready(Carousel.init);
