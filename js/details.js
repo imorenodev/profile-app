@@ -1,17 +1,12 @@
 var Details = (function() {
-	var $items, $content;
+	var $content;
 
 	function init() {
-	  $items = $("[rel=js-carousel] > [rel=js-content] > [rel=js-items]");
 	  $content = $("[rel=js-details]");
-
-	  $items.on("click", "[rel*='js-item-']", detailsClickItems);
 	}
 
-  function detailsClickItems(e) {
-  	var itemId = $(e.target).attr("rel").split("").pop();
-
-    var url = 'details/' + itemId + '.html';
+  function loadPerson(id) {
+    var url = 'details/' + id + '.html';
       
     $.ajax(url, {dataType: "text" })
       .then(function(contents) {
@@ -20,7 +15,8 @@ var Details = (function() {
   }
 
   return {
-    init:init
+    init:init,
+    loadPerson: loadPerson
   };
 
 })();

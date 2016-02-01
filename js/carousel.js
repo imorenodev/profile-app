@@ -26,6 +26,12 @@ var Carousel = (function() {
 		$items.css({ left: (-position) + "px" });
 	}
 
+	function clickPerson(e) {
+		var id = $(e.target).attr("rel").split("").pop();
+
+		Details.loadPerson(id);
+	}
+
   function init() {
     $content = $("[rel=js-carousel] > [rel=js-content]");
 	  $items = $content.children("[rel=js-items]");
@@ -40,6 +46,8 @@ var Carousel = (function() {
 
     $left.on("click", scrollLeft);
     $right.on("click", scrollRight);
+
+    $items.on("click", "[rel*='js-item-']", clickPerson);
   }
   
   return {
