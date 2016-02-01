@@ -29,7 +29,7 @@ var Carousel = (function() {
 	function clickPerson(e) {
 		var id = $(e.target).attr("rel").split("").pop();
 
-		Details.loadPerson(id);
+		EVT.emit("person-selected", id);
 	}
 
   function init() {

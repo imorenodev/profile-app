@@ -3,6 +3,8 @@ var Details = (function() {
 
 	function init() {
 	  $content = $("[rel=js-details]");
+
+	  EVT.on("person-selected", loadPerson);
 	}
 
   function loadPerson(id) {
