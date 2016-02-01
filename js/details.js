@@ -2,6 +2,7 @@ var Details = (function() {
 	var $content;
 
 	function init() {
+		//a tag link found in details/2.html
 	  $content = $("[rel=js-details]");
 
 	  $content.on("click", "[rel=js-select-person]", selectPerson);
