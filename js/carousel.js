@@ -28,32 +28,37 @@ var Carousel = (function() {
 
 	function clickPerson(e) {
 		var id = $(e.target).attr("rel").split("").pop();
+    
+    highlightSelectedPerson(e);
 
 		EVT.emit("person-selected", id);
 	}
 
+	function highlightSelectedPerson(e) {
+		//remove border from previously selected person
+    $("[rel*='js-item-']").css({"border": "none"});
+    //add border to newly selected person
+    $(e.target).css({"border": "2px solid red"});
+	}
+
   function init() {
     $content = $("[rel=js-carousel] > [rel=js-content]");
-	  $items = $content.children("[rel=js-items]");
-	  $left = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-left]");
-	  $right = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-right]");
+		$items = $content.children("[rel=js-items]");
+		$left = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-left]");
+		$right = $("[rel=js-carousel] > [rel=js-controls] > [rel=js-right]");
 
 
-	  contentWidth = $content.width();
-	  itemsWidth = $items.width();
-	  position = 0;
-	  maxPosition = (itemsWidth - contentWidth);
+		contentWidth = $content.width();
+		itemsWidth = $items.width();
+		position = 0;
+		maxPosition = (itemsWidth - contentWidth);
 
-    $left.on("click", scrollLeft);
-    $right.on("click", scrollRight);
+	  $left.on("click", scrollLeft);
+	  $right.on("click", scrollRight);
 
-    $items.on("click", "[rel*='js-item-']", clickPerson);
+	  $items.on("click", "[rel*='js-item-']", clickPerson);
   }
 
   EVT.on("init", init);
-  
-  return {
-  	init: init
-  };
 
 })();

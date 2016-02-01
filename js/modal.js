@@ -7,7 +7,7 @@ var Modal = (function() {
 
 	  $.ajax(url, {dataType: "text"})
 	    .then(function(contents) {
-	      $modal.html(contents += closeButton).show();
+	      $modal.html(contents += closeButton).toggle();
 
         init();
 	    });

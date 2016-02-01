@@ -17,9 +17,5 @@ var Header = (function() {
 
   EVT.on("init", init);
 
-  return {
-    init: init
-  };
-
 })();
 
