@@ -16,6 +16,8 @@ var Details = (function() {
     });
   }
 
+  EVT.on("init", init);
+
   return {
     init:init,
     loadPerson: loadPerson

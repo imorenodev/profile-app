@@ -49,6 +49,8 @@ var Carousel = (function() {
 
     $items.on("click", "[rel*='js-item-']", clickPerson);
   }
+
+  EVT.on("init", init);
   
   return {
   	init: init
