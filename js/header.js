@@ -7,20 +7,13 @@ var Header = (function() {
     e.stopImmediatePropagation();
 
     var url = $(e.target).attr("href");
-    
-    $.ajax(url, {dataType: "text" })
-      .then(function(contents) {
-        $modal.html(contents).show();
-      });
+    //send url to Modal module
+    EVT.emit("open", url);
   }
 
   function init() {
-    $modal = $("[rel='js-modal']");
-
     $("[rel='js-controls']").on("click", "[rel*='js-']", headerLinkClicks );
   }
-
-  var $modal;
 
   EVT.on("init", init);
 

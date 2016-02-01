@@ -4,7 +4,17 @@ var Details = (function() {
 	function init() {
 	  $content = $("[rel=js-details]");
 
+	  $content.on("click", "[rel=js-select-person]", selectPerson);
+
 	  EVT.on("person-selected", loadPerson);
+	}
+
+	function selectPerson(e) {
+		e.preventDefault();
+
+		var id = $(e.target).attr("data-person");
+		
+		EVT.emit("person-selected", id);
 	}
 
   function loadPerson(id) {
